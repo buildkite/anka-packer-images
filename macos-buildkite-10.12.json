@@ -1,0 +1,57 @@
+{
+  "builders": [
+    {
+      "type": "vmware-vmx",
+      "source_path": "{{user `source_path`}}",
+      "ssh_username": "vmkite",
+      "ssh_password": "vmkite",
+      "shutdown_command": "echo 'vmkite'| sudo -S shutdown -h now",
+      "skip_compaction": true,
+      "headless": "{{ user `headless` }}",
+      "vm_name": "{{user `vm_name`}}",
+      "vnc_bind_address": "{{user `vnc_bind_address`}}",
+      "output_directory": "{{user `output_directory`}}",
+      "vmx_data_post": {
+        "scsi0:0.mode": "independent-nonpersistent"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "destination": "/Users/vmkite/com.macstadium.vmkite-buildkite-agent.plist",
+      "source": "scripts/macos/support/com.macstadium.vmkite-buildkite-agent.plist",
+      "type": "file"
+    },
+    {
+      "destination": "/Users/vmkite/vmkite-buildkite-agent.sh",
+      "source": "scripts/macos/support/vmkite-buildkite-agent.sh",
+      "type": "file"
+    },
+    {
+      "destination": "/tmp/buildkite-hooks",
+      "source": "hooks",
+      "type": "file"
+    },
+    {
+      "environment_vars": [
+        "BUILDKITE_BUILD_NUMBER={{user `buildkite_build_number`}}",
+        "BUILDKITE_BRANCH={{user `buildkite_branch`}}",
+        "BUILDKITE_COMMIT={{user `buildkite_commit`}}"
+      ],
+      "scripts": [
+        "scripts/macos/buildkite.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "headless": "",
+    "source_path": "",
+    "vm_name": "macos-buildkite-10.12.3-r{{env `BUILDKITE_BUILD_NUMBER`}}",
+    "output_directory": "output",
+    "vnc_bind_address": "0.0.0.0",
+    "buildkite_build_number": "{{env `BUILDKITE_BUILD_NUMBER`}}",
+    "buildkite_branch": "{{env `BUILDKITE_BRANCH`}}",
+    "buildkite_commit": "{{env `BUILDKITE_COMMIT`}}"
+  }
+}

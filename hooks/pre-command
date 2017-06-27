@@ -1,0 +1,21 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ -f ./Brewfile ]] ; then
+    echo "~~~ Installing homebrew dependencies"
+    brew bundle install
+  fi
+
+  if [[ -f ./Podfile ]] ; then
+    echo "~~~ Installing cocoapods dependencies"
+    pods install --verbose
+  fi
+fi
+
+if [[ -f Gemfile ]] ; then
+  echo "~~~ Installing ruby dependencies with bundler"
+  number_of_cores=$(sysctl -n hw.ncpu)
+  bundle config --global jobs $((number_of_cores - 1))
+  bundler install
+fi
