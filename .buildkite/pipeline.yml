@@ -1,0 +1,6 @@
+steps:
+  - wait
+  - label: ":hammer_and_wrench: :packer: validate"
+    command: make validate
+    agents:
+      queue: "${BUILDKITE_AGENT_META_DATA_QUEUE}"
