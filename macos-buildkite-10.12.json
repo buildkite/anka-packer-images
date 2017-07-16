@@ -1,19 +1,10 @@
 {
   "builders": [
     {
-      "type": "vmware-vmx",
-      "source_path": "{{user `source_path`}}",
-      "ssh_username": "vmkite",
-      "ssh_password": "vmkite",
-      "shutdown_command": "echo 'vmkite'| sudo -S shutdown -h now",
-      "skip_compaction": true,
-      "headless": "{{ user `headless` }}",
-      "vm_name": "{{user `vm_name`}}",
-      "vnc_bind_address": "{{user `vnc_bind_address`}}",
-      "output_directory": "{{user `output_directory`}}",
-      "vmx_data_post": {
-        "scsi0:0.mode": "independent-nonpersistent"
-      }
+     "type": "veertu-anka",
+     "vm_name": "{{ user `vm_name` }}-r{{ user `build_number` }}",
+     "source_vm_name":  "{{user `source_vm`}}",
+     "boot_delay": "2s"
     }
   ],
   "provisioners": [
@@ -45,11 +36,12 @@
     }
   ],
   "variables": {
-    "headless": "",
-    "source_path": "",
-    "vm_name": "macos-buildkite-10.12.3-r{{env `BUILDKITE_BUILD_NUMBER`}}",
-    "output_directory": "output",
-    "vnc_bind_address": "0.0.0.0",
+    "vm_name": "macos-buildkite-10.12",
+    "build_number": "1",
+    "source_vm": "",
+    "fastlane_user": "{{env `FASTLANE_USER`}}",
+    "fastlane_password": "{{env `FASTLANE_PASSWORD`}}",
+    "xcode_version": "8.3.2",
     "buildkite_build_number": "{{env `BUILDKITE_BUILD_NUMBER`}}",
     "buildkite_branch": "{{env `BUILDKITE_BRANCH`}}",
     "buildkite_commit": "{{env `BUILDKITE_COMMIT`}}"

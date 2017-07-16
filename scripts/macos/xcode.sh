@@ -1,17 +1,20 @@
 #!/bin/bash
-set -euo pipefail
-source ~/.bash_profile
+set -euxo pipefail
+
+source ~/.profile
 
 if [ -z "${XCODE_VERSION:-}" ] ; then
   echo "Must set \$XCODE_VERSION"
   exit 1
 fi
 
+# sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+
 gem install xcode-install cocoapods
 rbenv rehash
 
-ls -alR /Users/vmkite/Library/Caches
-sudo chown -R vmkite: /Users/vmkite/Library/Caches
+# ls -alR /Users/vmkite/Library/Caches
+# sudo chown -R vmkite: /Users/vmkite/Library/Caches
 
 xcversion install "$XCODE_VERSION"
 xcversion cleanup

@@ -22,8 +22,7 @@
     "cpu_count": "2",
     "disk_size": "20G",
     "ram_size": "4G",
-    "version": "10.12.3",
-    "vm_name": "macos-base-10.12.3",
+    "vm_name": "macos-base-10.12",
     "build_number": "1",
     "source_vm": ""
   }

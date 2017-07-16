@@ -3,7 +3,7 @@ headless := true
 packer_args := -force
 output_directory := output
 packer_log :=
-build_number :=
+build_number ?= 1
 
 validate:
 	packer version
@@ -23,13 +23,13 @@ macos-10.12:
 		macos-10.12.json
 
 macos-xcode-10.12:
-	packer build $(packer_args) \
+	PACKER_LOG=$(packer_log) packer build $(packer_args) \
 		-var source_vm="$(source_vm)" \
 		-var build_number="$(build_number)" \
 		macos-xcode-10.12.json
 
 macos-buildkite-10.12:
-	packer build $(packer_args) \
+	PACKER_LOG=$(packer_log) packer build $(packer_args) \
 		-var source_vm="$(source_vm)" \
 		-var build_number="$(build_number)" \
 		macos-buildkite-10.12.json

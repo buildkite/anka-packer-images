@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+set -eu
 
 # Add homebrew to path
 echo "export PATH=/usr/local/bin:$PATH" >> ~/.bash_profile
