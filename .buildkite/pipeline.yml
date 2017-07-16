@@ -4,3 +4,10 @@ steps:
     command: make validate
     agents:
       queue: "${BUILDKITE_AGENT_META_DATA_QUEUE}"
+
+  - wait
+  - label: ":hammer_and_wrench: Build macos-10.12"
+    command: .buildkite/build.sh macos-10.12
+    agents:
+      queue: "${BUILDKITE_AGENT_META_DATA_QUEUE}"
+
