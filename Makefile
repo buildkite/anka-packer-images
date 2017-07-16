@@ -2,7 +2,7 @@
 headless := true
 packer_args := -force
 output_directory := output
-packer_log :=
+packer_log := 0
 build_number ?= 1
 
 validate:
