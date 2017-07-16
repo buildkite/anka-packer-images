@@ -22,7 +22,7 @@ make macos-10.12
 ```
 
 Phase 2: XCode, Ruby and Dashlane
----------------------------
+---------------------------------
 
 The base layer is the slowest layer, as it downloads and installs Xcode. It contains
 the following:
@@ -38,8 +38,18 @@ the following:
 It builds images in the form: `macos-xcode-X.X-rX`
 
 ```bash
-make macos-xcode-10.12 source_vm={image_name_from_previous_step}
+FASTLANE_USER=myiclouduser@blah FASTLANE_PASSWORD=mypassword make macos-xcode-10.12 source_vm={image_name_from_previous_step}
 ```
 
+Phase 3: Buildkite Agent
+------------------------
+
+- buildkite-agent v3
+
+It builds images in the form: `macos-buildkite-X.X-rX`
+
+```bash
+make macos-buildkite-10.12 source_vm={image_name_from_previous_step}
+```
 
 
