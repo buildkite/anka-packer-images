@@ -1,7 +1,7 @@
 Packer scripts for use with Veertu Anka
 =======================================
 
-This script requires Veertu Anka installed and my packer builder.
+This script requires Veertu Anka installed and [my packer builder](https://github.com/lox/packer-builder-veertu-anka).
 
 There are three stages of images, which can be thought of like layers. This allows
 for reasonably rapid iteration on the scripts, as working stages can be re-used.
