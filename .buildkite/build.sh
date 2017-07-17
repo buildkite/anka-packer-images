@@ -6,6 +6,7 @@ function upload_install_log() {
 }
 
 image="$1"
+source_vm="${2:-}"
 
 if [[ $image == "macos-10.12" ]] ; then
   echo "--- Installing error trap for install.log"
@@ -17,4 +18,4 @@ if [[ $image == "macos-10.12" ]] ; then
 fi
 
 echo "--- Building $image"
-make "$image"
+make "$image" "source_vm=${source_vm}" "build_number=${BUILDKITE_BUILD_NUMBER}"

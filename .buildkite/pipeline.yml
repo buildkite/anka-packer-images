@@ -13,6 +13,6 @@ steps:
 
   - wait
   - label: ":hammer_and_wrench: Build macos-xcode-10.12"
-    command: .buildkite/build.sh macos-xcode-10.12
+    command: .buildkite/build.sh macos-xcode-10.12 macos-base-10.12-r${BUILDKITE_BUILD_NUMBER}
     agents:
       queue: "${BUILDKITE_AGENT_META_DATA_QUEUE}"
