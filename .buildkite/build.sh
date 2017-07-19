@@ -18,4 +18,4 @@ if [[ $image == "macos-10.12" ]] ; then
 fi
 
 echo "--- Building $image"
-make "$image" "source_vm=${source_vm}" "build_number=${BUILDKITE_BUILD_NUMBER}"
+make "$image" "packer_log=${PACKER_LOG:-}" "source_vm=${source_vm}" "build_number=${BUILDKITE_BUILD_NUMBER}"
