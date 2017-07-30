@@ -1,21 +1,24 @@
 #!/bin/bash
 set -euo pipefail
 
-if [ -z "${XCODE_VERSION:-}" ] ; then
-  echo "Must set \$XCODE_VERSION"
+XCODE_FILE="$HOME/Library/Caches/XcodeInstall/Xcode${XCODE_VERSION}.xip"
+XCODE_URL="file://${XCODE_FILE}"
+
+if [ ! -f "${XCODE_FILE:-}" ] ; then
+  echo "Couldn't find ${XCODE_FILE:-}"
   exit 1
 fi
 
 # sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
 eval "$(rbenv init -)"
-gem install xcode-install
+
+curl -sL -O https://github.com/neonichu/ruby-domain_name/releases/download/v0.5.99999999/domain_name-0.5.99999999.gem
+gem install domain_name-0.5.99999999.gem
+gem install --conservative xcode-install
+rm -f domain_name-0.5.99999999.gem
 rbenv rehash
 
-# ls -alR /Users/vmkite/Library/Caches
-# sudo chown -R vmkite: /Users/vmkite/Library/Caches
-
-set -x
-xcversion install "$XCODE_VERSION"
+xcversion install --verbose --url="$XCODE_URL" "$XCODE_VERSION"
 xcversion cleanup
 
 export HOMEBREW_NO_AUTO_UPDATE=1

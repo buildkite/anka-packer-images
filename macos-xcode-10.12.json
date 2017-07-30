@@ -4,14 +4,17 @@
      "type": "veertu-anka",
      "vm_name": "{{ user `vm_name` }}-r{{ user `build_number` }}",
      "source_vm_name":  "{{user `source_vm`}}",
-     "boot_delay": "5s"
+     "boot_delay": "15s"
     }
   ],
   "provisioners": [
     {
+      "destination": "/Users/anka/Library/Caches/XcodeInstall",
+      "source": ".xcodeinstall/",
+      "type": "file"
+    },
+    {
       "environment_vars": [
-        "FASTLANE_USER={{user `fastlane_user`}}",
-        "FASTLANE_PASSWORD={{user `fastlane_password`}}",
         "XCODE_VERSION={{user `xcode_version`}}"
       ],
       "scripts": [
@@ -25,8 +28,6 @@
     "vm_name": "macos-xcode-10.12",
     "build_number": "1",
     "source_vm": "",
-    "fastlane_user": "{{env `FASTLANE_USER`}}",
-    "fastlane_password": "{{env `FASTLANE_PASSWORD`}}",
     "xcode_version": "8.3.2"
   }
 }
