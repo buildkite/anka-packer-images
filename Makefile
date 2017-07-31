@@ -12,7 +12,7 @@ clean:
 	-rm -rf installers/
 
 delete-all:
-	anka list | tail -n+5 | awk '/^\|/ {print $2}' | xargs -n1 echo anka delete --force
+	anka list | tail -n+5 | awk '/^\|/ {print $$2}' | xargs -n1 anka delete --yes
 
 # macOS images
 # -------------------------------------------------------------
