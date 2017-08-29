@@ -14,7 +14,7 @@
     {
       "scripts": [
         "scripts/macos/homebrew.sh",
-        "scripts/macos/ruby.sh",
+        "scripts/macos/ruby.sh"
       ],
       "type": "shell"
     }

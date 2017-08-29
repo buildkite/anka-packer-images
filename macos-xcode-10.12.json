@@ -16,7 +16,7 @@
     {
       "environment_vars": [
         "FASTLANE_USER={{user `fastlane_user`}}",
-        "FASTLAND_PASSWORD={{user `fastlane_password`}}",        
+        "FASTLAND_PASSWORD={{user `fastlane_password`}}",
         "XCODE_VERSION={{user `xcode_version`}}"
       ],
       "scripts": [
