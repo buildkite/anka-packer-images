@@ -2,6 +2,7 @@
 packer_args := -force
 output_directory := output
 build_number ?= 1
+xcode_version = 8.3.2
 
 validate:
 	packer version
@@ -13,6 +14,12 @@ clean:
 
 delete-all:
 	anka list | tail -n+5 | awk '/^\|/ {print $$2}' | xargs -n1 anka delete --yes
+
+setup:
+	gem install xcode-install
+	mkdir -p .xcodeinstall/
+	xcversion install --no-install --verbose $(xcode_version)
+	cp $(HOME)/Library/Caches/XcodeInstall/Xcode$(xcode_version).xip .xcodeinstall/
 
 # macOS images
 # -------------------------------------------------------------

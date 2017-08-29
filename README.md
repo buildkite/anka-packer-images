@@ -1,10 +1,23 @@
 Packer scripts for use with Veertu Anka
 =======================================
 
-This script requires Veertu Anka installed and [my packer builder](https://github.com/lox/packer-builder-veertu-anka).
+This script requires Veertu Anka installed and [our packer builder](https://github.com/buildkite/packer-builder-veertu-anka).
 
 There are three stages of images, which can be thought of like layers. This allows
 for reasonably rapid iteration on the scripts, as working stages can be re-used.
+
+Get Started
+-----------
+
+Checkout this repository to a directory:
+
+```bash
+git clone git@github.com:buildkite/anka-packer-images.git
+cd anka-packer-images/
+make setup
+make macos-10.12
+make macos-xcode-10.12 source_vm=macos-base-10.12-r1
+```
 
 Phase 1: Basic MacOS
 --------------------
@@ -38,18 +51,5 @@ the following:
 It builds images in the form: `macos-xcode-X.X-rX`
 
 ```bash
-FASTLANE_USER=myiclouduser@blah FASTLANE_PASSWORD=mypassword make macos-xcode-10.12 source_vm={image_name_from_previous_step}
+make macos-xcode-10.12 source_vm={image_name_from_previous_step}
 ```
-
-Phase 3: Buildkite Agent
-------------------------
-
-- buildkite-agent v3
-
-It builds images in the form: `macos-buildkite-X.X-rX`
-
-```bash
-make macos-buildkite-10.12 source_vm={image_name_from_previous_step}
-```
-
-
