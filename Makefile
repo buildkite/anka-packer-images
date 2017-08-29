@@ -2,7 +2,7 @@
 packer_args := -force
 output_directory := output
 build_number ?= 1
-source_vm ?= macos-10.12
+source_vm ?= macos-10.12-r$(build_number)
 xcode_version = 8.3.2
 xcode_xip = .xcodeinstall/Xcode$(xcode_version).xip
 xcode_source_xip = $(HOME)/Library/Caches/XcodeInstall/Xcode$(xcode_version).xip
@@ -34,8 +34,9 @@ macos-10.12:
 		-var build_number="$(build_number)" \
 		macos-10.12.json
 
-macos-xcode-10.12: $(xcode_xip)
+macos-10.12-xcode-8.3.2: $(xcode_xip)
 	PACKER_LOG=$(packer_log) packer build $(packer_args) \
 		-var source_vm="$(source_vm)" \
+		-var build_number="$(build_number)" \
 		-var build_number="$(build_number)" \
 		macos-xcode-10.12.json

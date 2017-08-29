@@ -13,7 +13,8 @@
   "provisioners": [
     {
       "scripts": [
-        "scripts/macos/homebrew.sh"
+        "scripts/macos/homebrew.sh",
+        "scripts/macos/ruby.sh",
       ],
       "type": "shell"
     }

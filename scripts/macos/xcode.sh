@@ -1,14 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-XCODE_FILE="$HOME/Library/Caches/XcodeInstall/Xcode${XCODE_VERSION}.xip"
-XCODE_URL="file://${XCODE_FILE}"
-
-if [ ! -f "${XCODE_FILE:-}" ] ; then
-  echo "Failed to find ${XCODE_FILE:-}, run make setup"
-  exit 1
-fi
-
 # sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
 eval "$(rbenv init -)"
 
@@ -18,7 +10,7 @@ gem install --conservative xcode-install
 rm -f domain_name-0.5.99999999.gem
 rbenv rehash
 
-xcversion install --verbose --url="$XCODE_URL" "$XCODE_VERSION"
+xcversion install --verbose "$XCODE_VERSION"
 xcversion cleanup
 
 export HOMEBREW_NO_AUTO_UPDATE=1

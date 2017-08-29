@@ -28,6 +28,8 @@ the following things added:
 
 - Homebrew
 - XCode Developer Tools
+- Rbenv and plugins
+- Ruby 2.4.0
 
 It builds images in the form: `macos-base-X.X-rX`
 
@@ -35,22 +37,20 @@ It builds images in the form: `macos-base-X.X-rX`
 make macos-10.12
 ```
 
-Phase 2: XCode, Ruby and Dashlane
----------------------------------
+Phase 2: XCode and Dashlane
+---------------------------
 
 The base layer is the slowest layer, as it downloads and installs Xcode. It contains
 the following:
 
-- Xcode 8.3.2
-- Rbenv and plugins
-- Ruby 2.4.0
+- Xcode (defaults to 8.3.3)
 - Fastlane
 - Carthage
 - Swiftlint
 - CocoaPods
 
-It builds images in the form: `macos-xcode-X.X-rX`
+It builds images in the form: `macos-X.X-xcode-X.X.X-rX`.
 
 ```bash
-make macos-xcode-10.12 source_vm={image_name_from_previous_step}
+make macos-10.12-xcode xcode_version=8.3.3 source_vm={image_name_from_previous_step}
 ```

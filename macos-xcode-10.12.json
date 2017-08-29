@@ -15,10 +15,11 @@
     },
     {
       "environment_vars": [
+        "FASTLANE_USER={{user `fastlane_user`}}",
+        "FASTLAND_PASSWORD={{user `fastlane_password`}}",        
         "XCODE_VERSION={{user `xcode_version`}}"
       ],
       "scripts": [
-        "scripts/macos/ruby.sh",
         "scripts/macos/xcode.sh"
       ],
       "type": "shell"
@@ -28,6 +29,8 @@
     "vm_name": "macos-xcode-10.12",
     "build_number": "1",
     "source_vm": "",
-    "xcode_version": "8.3.3"
+    "xcode_version": "8.3.3",
+    "fastlane_user": "{{env `FASTLANE_USER`}}",
+    "fastlane_password": "{{env `FASTLANE_PASSWORD`}}"
   }
 }
