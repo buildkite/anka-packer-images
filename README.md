@@ -3,7 +3,7 @@ Packer scripts for use with Veertu Anka
 
 This script requires Veertu Anka installed and [our packer builder](https://github.com/buildkite/packer-builder-veertu-anka).
 
-There are three stages of images, which can be thought of like layers. This allows
+There are two stages of images, which can be thought of like layers. This allows
 for reasonably rapid iteration on the scripts, as working stages can be re-used.
 
 Get Started
