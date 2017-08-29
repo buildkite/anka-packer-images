@@ -16,7 +16,6 @@ Checkout this repository to a directory:
 ```bash
 git clone git@github.com:buildkite/anka-packer-images.git
 cd anka-packer-images/
-make setup
 make macos-10.12
 make macos-xcode-10.12 source_vm=macos-base-10.12-r1
 ```
