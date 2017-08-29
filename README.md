@@ -1,6 +1,8 @@
 Packer scripts for use with Veertu Anka
 =======================================
 
+This provides a basic MacOS + Xcode for automated testing of macOS/iOS.
+
 This script requires Veertu Anka installed and [our packer builder](https://github.com/buildkite/packer-builder-veertu-anka).
 
 There are two stages of images, which can be thought of like layers. This allows
