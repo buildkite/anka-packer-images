@@ -1,6 +1,7 @@
 
 packer_args := -force
 output_directory := output
+xcode_version := 8.3.3
 
 validate:
 	packer version
@@ -23,7 +24,7 @@ macos-10.12:
 
 macos-xcode-10.12: 
 	PACKER_LOG=$(packer_log) packer build $(packer_args) \
+		-var vm_name="$(vm_name)" \
 		-var source_vm="$(source_vm)" \
 		-var xcode_version="$(xcode_version)" \
-		-var build_number="$(build_number)" \
 		macos-xcode-10.12.json

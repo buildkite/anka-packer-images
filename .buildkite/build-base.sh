@@ -34,6 +34,7 @@ cache_key=$(echo "${files_hash} ${anka_version} ${product_version} ${product_bui
   | awk '{print $1}')
 
 vm_name="macos-base-${product_version}-${product_build_version}-${cache_key:0:8}"
+buildkite-agent metadata set vm_name "${vm_name}"
 
 echo "--- Checking for VM ${vm_name}"
 
