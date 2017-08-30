@@ -22,7 +22,7 @@ echo "Product Version: ${product_build_version}"
 
 echo "--- Checking for changed files"
 
-files_hash=$(find ./*.json scripts/ -type f -print0 \
+files_hash=$(find ./macos-10.12.json scripts/ -type f -print0 \
   | xargs -0 sha1sum \
   | awk '{print $1}' \
   | sort \
