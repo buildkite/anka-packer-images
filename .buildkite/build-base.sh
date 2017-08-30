@@ -12,7 +12,7 @@ anka_version=$(anka version)
 echo "Anka version: ${anka_version}"
 
 echo "--- Checking installer details"
-./get-macos-version.sh > SystemVersion.plist
+./.buildkite/get-macos-version.sh > SystemVersion.plist
 
 product_version=$(/usr/libexec/PlistBuddy -c "Print :ProductVersion" SystemVersion.plist)
 product_build_version=$(/usr/libexec/PlistBuddy -c "Print :ProductBuildVersion" SystemVersion.plist)
