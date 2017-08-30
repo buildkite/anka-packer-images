@@ -25,18 +25,29 @@ echo "--- Checking for changed files"
 files_hash=$(find ./*.json scripts/ -type f -print0 \
   | xargs -0 sha1sum \
   | awk '{print $1}' \
-  | sort | sha1sum \
+  | sort \
+  | sha1sum \
   | awk '{print $1}')
 
-echo "Files hash is $files_hash"
-echo "Cache key will be ${files_hash} ${anka_version} ${product_version} ${product_build_version}"
+cache_key=$(echo "${files_hash} ${anka_version} ${product_version} ${product_build_version}" \
+  | sha1sum \
+  | awk '{print $1}')
 
-echo "--- Installing error trap for install.log"
-trap upload_install_log ERR
+vm_name="macos-base-${product_version}-${product_build_version}-${cache_key:0:8}"
+
+echo "--- Checking for VM ${vm_name}"
+
+if anka show "${vm_name}" ; then
+  echo "Already exists!"
+  exit 0
+fi
 
 echo "--- Calculating installer checksums"
 echo "Compare to https://github.com/notpeter/apple-installer-checksums"
 shasum /Applications/Install*OS*.app/Contents/SharedSupport/InstallESD.dmg
 
-# echo "--- Building $image"
-# make "$image" "packer_log=${PACKER_LOG:-}" "source_vm=${source_vm}" "build_number=${BUILDKITE_BUILD_NUMBER}"
+echo "--- Installing error trap for install.log"
+trap upload_install_log ERR
+
+echo "--- Building ${vm_name}"
+make macos-10.12 "packer_log=${PACKER_LOG:-}" "vm_name=${vm_name}"
