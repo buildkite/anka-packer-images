@@ -9,11 +9,6 @@
   ],
   "provisioners": [
     {
-      "destination": "/Users/anka/Library/Caches/XcodeInstall",
-      "source": ".xcodeinstall/",
-      "type": "file"
-    },
-    {
       "environment_vars": [
         "FASTLANE_USER={{user `fastlane_user`}}",
         "FASTLAND_PASSWORD={{user `fastlane_password`}}",
