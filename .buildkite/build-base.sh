@@ -6,6 +6,11 @@ function upload_install_log() {
   buildkite-agent artifact upload SystemVersion.plist
 }
 
+echo "--- Checking system details"
+anka_version=$(anka version)
+
+echo "Anka version: ${anka_version}"
+
 echo "--- Checking installer details"
 ./get-macos-version.sh > SystemVersion.plist
 
@@ -24,6 +29,7 @@ files_hash=$(find ./*.json scripts/ -type f -print0 \
   | awk '{print $1}')
 
 echo "Files hash is $files_hash"
+echo "Cache key will be ${files_hash} ${anka_version} ${product_version} ${product_build_version}"
 
 echo "--- Installing error trap for install.log"
 trap upload_install_log ERR
