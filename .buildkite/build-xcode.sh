@@ -6,7 +6,7 @@ function upload_install_log() {
 }
 
 xcode_version="$1"
-source_vm=$(buildkite-agent metadata get vm_name)
+source_vm=$(buildkite-agent meta-data get vm_name)
 vm_name="${source_vm/-base/}-xcode-${xcode_version}"
 
 echo "--- Building ${vm_name}"
