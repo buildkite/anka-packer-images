@@ -10,4 +10,4 @@ source_vm=$(buildkite-agent meta-data get vm_name)
 vm_name="${source_vm/-base/}-xcode-${xcode_version}"
 
 echo "--- Building ${vm_name}"
-packer build -force -var "vm_name=${vm_name}" -var "source_vm=${source_vm}" macos-xcode-10.12
+packer build -force -var "vm_name=${vm_name}" -var "source_vm=${source_vm}" macos-xcode-10.12.json
