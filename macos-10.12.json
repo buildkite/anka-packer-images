@@ -6,7 +6,7 @@
      "disk_size": "{{user `disk_size`}}",
      "ram_size": "{{user `ram_size`}}",
      "cpu_count": "{{user `cpu_count`}}",
-     "vm_name": "{{ user `vm_name` }}-r{{ user `build_number` }}",
+     "vm_name": "{{ user `vm_name` }}",
      "source_vm_name":  "{{user `source_vm`}}"
     }
   ],

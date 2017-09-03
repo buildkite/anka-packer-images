@@ -51,4 +51,4 @@ echo "--- Installing error trap for install.log"
 trap upload_install_log ERR
 
 echo "--- Building ${vm_name}"
-make macos-10.12 "packer_log=${PACKER_LOG:-}" "vm_name=${vm_name}"
+packer build -force -var "vm_name=${vm_name}" macos-10.12.json
